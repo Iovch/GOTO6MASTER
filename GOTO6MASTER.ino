@@ -9,10 +9,10 @@ LiquidCrystal_I2C lcd(0x27,16,2);
 #include "GOTO6Config.h"
 
 int imStepsXPS = iStepsXPS*iXStepX; //Микрошагов в секунду на двигателе X
-int imStepsYPS = iStepsYPS*iYStepX; //Микрошагов в секунду на двигателе Y
+int imStepsYPS = iStepsYPS*iYStepY; //Микрошагов в секунду на двигателе Y
 
 unsigned long ulSPRA = iStepsDX*dRDX*iXStepX; //Микрошагов двигателя X на полный оборот оси прямого восхождения
-unsigned long ulSPDE = iStepsDY*dRDY*iYStepX; //Микрошагов двигателя Y на полный оборот оси склонений
+unsigned long ulSPDE = iStepsDY*dRDY*iYStepY; //Микрошагов двигателя Y на полный оборот оси склонений
 
 const unsigned long StarMSPS=86164091; //Милисекунд в Звездных сутках
 // const unsigned long StarMSPS=86400000; //Милисекунд в Солнечных сутках
@@ -131,7 +131,7 @@ int Force_Y(boolean bForce)
    }
   if(bForceY && !bForce) //Включаем микрошаговый режим
   {
-    iYSX = iYStepX; //Кратность шага драйвера Y
+    iYSX = iYStepY; //Кратность шага драйвера Y
     digitalWrite(DY_FORCE_PIN, HIGH);
     imStepsYPS = 500; //Микрошагов в секунду на двигателе Y
     ulSPDE = iStepsDY*dRDY*iYSX; //Микрошагов двигателя Y на полный оборот оси склонений
